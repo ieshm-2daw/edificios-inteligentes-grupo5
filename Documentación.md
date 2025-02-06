@@ -5,10 +5,17 @@
   el primer relé.</p>
 
   
-# Configuración de los ESP32 con MQTT y sensores PIR
+# Conectar 2 ESP32 con los sensores PIR
+
+## Paso 1:
+Configuramos el código a través de la aplicación Arduino, introduciendo este primer código para configurar el primer relé.
+
+## Configuración de los ESP32 con MQTT y sensores PIR
 Este archivo muestra cómo configurar dos ESP32 para controlar un relé y monitorear sensores PIR a través de MQTT. A continuación, se detalla el código para ambos ESP32.
 
-## Código para el primer ESP32 (Control de relé y monitoreo de PIR remoto)
+### Código para el primer ESP32 (Control de relé y monitoreo de PIR remoto)
+
+```cpp
 #include <WiFi.h>
 #include <PubSubClient.h>
 
