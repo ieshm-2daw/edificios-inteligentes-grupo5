@@ -349,5 +349,5 @@ void loop() {
 <p>Entra en tu Home Assistant y entra en dispositivos y servicios descarga su complemento</p>
 <p>Configura la dirección IP</p>
 
-<p></p>
+<p>Configuración terminada</p>
 
