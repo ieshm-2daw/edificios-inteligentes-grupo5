@@ -140,8 +140,8 @@ Este archivo contiene el código para configurar un ESP32 que se conecta a una r
 #include <PubSubClient.h>
 
 // Configuración Wi-Fi
-const char* ssid = "2DAW_IoT";
-const char* password = "Somos2DAW";
+const char* ssid = "ssid";
+const char* password = "contraseña";
 
 // Configuración MQTT
 const char* mqtt_server = "ha.ieshm.org";
