@@ -224,6 +224,92 @@ void loop() {
   delay(100); // Reducir la frecuencia de lectura
 }
 
+<h2>Segundo codigo </h2>
+
+Al segundo código se le mete un segundo sensor PIR a lo igual que al  primero y su funcionamiento es igual pero actúa como una especie de repetidor si uno se enciende se le manda información al otro, lo detecta y enciende el relé.
+
+#include <WiFi.h>
+#include <PubSubClient.h>
+
+// Configuración Wi-Fi
+const char* ssid = "2DAW_IoT";
+const char* password = "Somos2DAW";
+
+// Configuración MQTT
+const char* mqtt_server = "ha.ieshm.org";
+const int mqtt_port = 1883;
+const char* mqtt_user = "mqtt";
+const char* mqtt_password = "mqtt";
+const char* mqtt_topic_pir = "g5/pir2"; // Tópico para enviar el estado del PIR
+
+// Pines
+#define PIR_PIN 26 // Pin donde está conectado el sensor PIR (GPIO 27)
+
+// Variables globales
+WiFiClient espClient;
+PubSubClient client(espClient);
+bool lastPirState = LOW; // Estado anterior del PIR
+
+// Función para conectarse a la red Wi-Fi
+void setup_wifi() {
+  delay(10);
+  Serial.println("Conectando a Wi-Fi...");
+  WiFi.begin(ssid, password);
+  while (WiFi.status() != WL_CONNECTED) {
+    delay(1000);
+    Serial.print(".");
+  }
+  Serial.println("\nWi-Fi conectado.");
+  Serial.print("Dirección IP: ");
+  Serial.println(WiFi.localIP());
+}
+
+// Función para reconectar al broker MQTT
+void reconnect() {
+  while (!client.connected()) {
+    Serial.print("Intentando conectar al broker MQTT...");
+    if (client.connect("ESP32_PIR2", mqtt_user, mqtt_password)) {
+      Serial.println("Conectado.");
+    } else {
+      Serial.print("Fallo en la conexión, código de error: ");
+      Serial.println(client.state());
+      Serial.println("Reintentando en 5 segundos...");
+      delay(5000);
+    }
+  }
+}
+
+void setup() {
+  Serial.begin(115200);
+
+  pinMode(PIR_PIN, INPUT);
+
+  setup_wifi();
+  client.setServer(mqtt_server, mqtt_port);
+
+  Serial.println("ESP32 con PIR lista.");
+}
+
+void loop() {
+  if (!client.connected()) {
+    reconnect();
+  }
+  client.loop();
+
+  // Leer el estado del sensor PIR
+  bool pirState = digitalRead(PIR_PIN);
+
+  // Enviar estado si hay un cambio
+  if (pirState != lastPirState) {
+    lastPirState = pirState;
+    if (pirState == HIGH) {
+      client.publish(mqtt_topic_pir, "DETECTED");
+      Serial.println("Movimiento detectado, enviado mensaje a MQTT.");
+    }
+  }
+  delay(100); // Reducir la frecuencia de lectura
+}
+
   <h1>Shelly EM </h1>
 
 <p>La Shelly EM es una placa de medición de voltaje e intensidad. 
