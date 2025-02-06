@@ -1,10 +1,4 @@
-<h1>COnectar 2 ESP32 con los sensores PIR </h1>
-<h2>Paso 1:</h2>
-<p>Configuramos el código a través de la aplicación Arduino con lo 
-  que introduciremos este primer código para configurar 
-  el primer relé.</p>
 
-  
 # Conectar 2 ESP32 con los sensores PIR
 
 ## Paso 1:
