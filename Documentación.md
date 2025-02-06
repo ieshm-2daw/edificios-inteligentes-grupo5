@@ -14,8 +14,8 @@ Este archivo muestra cómo configurar dos ESP32 para controlar un relé y monito
 #include <PubSubClient.h>
 
 // Configuración Wi-Fi
-const char* ssid = "2DAW_IoT";
-const char* password = "Somos2DAW";
+const char* ssid = "ssid";
+const char* password = "contraseña";
 
 // Configuración MQTT
 const char* mqtt_server = "ha.ieshm.org"; 
