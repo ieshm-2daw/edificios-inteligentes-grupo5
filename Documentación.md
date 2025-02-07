@@ -1,13 +1,15 @@
-
 # Conectar 2 ESP32 con los sensores PIR
 
-## Paso 1:
+## Paso 1
+
 Configuramos el código a través de la aplicación Arduino, introduciendo este primer código para configurar el primer relé.
 
 ## Configuración de los ESP32 con MQTT y sensores PIR
+
 Este archivo muestra cómo configurar dos ESP32 para controlar un relé y monitorear sensores PIR a través de MQTT. A continuación, se detalla el código para ambos ESP32.
 
 ### Código para el primer ESP32 (Control de relé y monitoreo de PIR remoto)
+
 
 ```cpp
 #include <WiFi.h>
@@ -18,10 +20,10 @@ const char* ssid = "ssid";
 const char* password = "contraseña";
 
 // Configuración MQTT
-const char* mqtt_server = "ha.ieshm.org"; 
+const char* mqtt_server = "ha.ieshm.org";
 const int mqtt_port = 1883;
-const char* mqtt_user = "mqtt"; 
-const char* mqtt_password = "mqtt"; 
+const char* mqtt_user = "mqtt";
+const char* mqtt_password = "mqtt";
 const char* mqtt_topic = "g5/rele";  // Tópico para controlar el relé
 const char* mqtt_log_topic = "g5/logs"; // Tópico para enviar logs
 const char* mqtt_topic_pir2 = "g5/pir2"; // Tópico del PIR de la segunda ESP32
@@ -136,6 +138,8 @@ void setup() {
 Este archivo contiene el código para configurar un ESP32 que se conecta a una red Wi-Fi y se comunica con un broker MQTT para enviar el estado de un sensor PIR.
 
 ## Código para el ESP32 (Sensor PIR y envío de estado vía MQTT)
+
+
 #include <WiFi.h>
 #include <PubSubClient.h>
 
@@ -303,13 +307,14 @@ void loop() {
   }
   delay(100); // Reducir la frecuencia de lectura
 }
+```
 
-  <h1>Shelly EM </h1>
+ <h1>Shelly EM </h1>
 
-<p>La Shelly EM es una placa de medición de voltaje e intensidad. 
+<p>La Shelly EM es una placa de medición de voltaje e intensidad.
   Pero lo que más necesitamos para nuestro proyecto es la potencia.</p>
 <p>Vamos a utilizar la placa para medir el consumo de energía que va a utilizar el aula,
-  este proyecto puede ser escalable para otros usos como programar un relé wifi.O simplemente medir y tratar de ahorrar energía 
+  este proyecto puede ser escalable para otros usos como programar un relé wifi.O simplemente medir y tratar de ahorrar energía
   que es el proyecto principal que tenemos en mente ahora mismo</p>
 
   <h2>Requerimiento</h2>
@@ -321,11 +326,13 @@ void loop() {
         <li>Dispositivo Móvil</li>
     </ul>
     <h1>Conectar pinza </h1>
-    <p>Conectar la pinza a la Shelly a través de uno de los puertos, ya sea P1 o P2. 
+    <p>Conectar la pinza a la Shelly a través de uno de los puertos, ya sea P1 o P2.
 </p>
 <h1>Paso 2: Alimentar el Shelly EM </h1>
 <p>Conecta el Shelly EM a la red eléctrica (230V AC) siguiendo el esquema del fabricante.</p>
 <p>Asegúrate de que la fase y el neutro estén bien conectados </p>
+
+  ![Texto alternativo](./Captura%20desde%202025-02-07%2009-22-29.png)
 
 
 
@@ -334,15 +341,22 @@ void loop() {
 <p>Accede a la IP 192.168.33.1 desde un navegador o desde la aplicación móvil (recomendable)</p>
 <p>Configura la conexión WiFi para que se una a tu red doméstica.</p>
 
+  ![Texto alternativo](./Captura%20desde%202025-02-07%2009-26-42.png)
+
 
 <h1>Paso 4: Configurar en la App </h1>
 <p>Si usas la app de Shelly, agrégalo a tu cuenta y personaliza las mediciones.</p>
 <p>También puedes añadir la sala en la que quieras configurar la shelly</p>
+ 
+   ![Texto alternativo](./Captura%20desde%202025-02-07%2009-28-19.png)
 
 
 <h1>Paso 5: Comprobar las mediciones</h1>
 <p>Accede a la interfaz web o app para ver los valores en tiempo real.</p>
 <p>Asegúrate de que la pinza está correctamente colocada en el cable de fase.</p>
+
+   ![Texto alternativo](./Captura%20desde%202025-02-07%2009-29-50.png)
+
 
 
 <h1>Paso 6:  Configurar en Home Assistant</h1>
